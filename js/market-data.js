@@ -296,12 +296,9 @@
   };
 
   MarketDataProvider.fetchSentiment = function (callback) {
-    if (MarketDataProvider.config.simulationMode) {
-      callback(null);
-      return;
-    }
-
-    fetchMarketSentiment(callback);
+    // News sentiment endpoint requires paid Finnhub plan
+    // Fall back to simulated sentiment based on price data
+    callback(null);
   };
 
   MarketDataProvider.getCached = getCached;
