@@ -329,11 +329,18 @@
   // ==========================================
   //  INIT
   // ==========================================
-  document.addEventListener('DOMContentLoaded', function () {
+  function init() {
     createTicker();
     initScreener();
     initSentiment();
-  });
+  }
+
+  // Handle both direct include and dynamic loading (after DOMContentLoaded)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
   window.DeltaMarket = { stocks: STOCKS, tick: tickPrices };
 })();
