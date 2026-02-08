@@ -1140,6 +1140,325 @@
 
 
   /* ==========================================
+     11. SIGNAL VS NOISE (Philosophy)
+     ========================================== */
+  function drawSignalNoise(canvasId) {
+    var canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    var w = canvas.parentElement.offsetWidth;
+    var h = 340;
+    var ctx = setupCanvas(canvas, w, h);
+    var margin = { top: 35, right: 25, bottom: 45, left: 55 };
+
+    var plot = drawPlotFrame(ctx, {
+      width: w, height: h, margin: margin,
+      title: 'SIGNAL EXTRACTION  —  FROM NOISE TO CONVICTION',
+      xTitle: 'OBSERVATION WINDOW',
+      yTitle: 'AMPLITUDE',
+      xLabels: ['0', '', '', '', '', 'T'],
+      yLabels: ['-1.0', '-0.5', '0.0', '+0.5', '+1.0'],
+      gridX: 5, gridY: 4
+    });
+
+    var nPoints = 500;
+    var rng = seededRandom(2026);
+
+    function mapX(i) { return plot.x + (i / nPoints) * plot.w; }
+    function mapY(v) { return plot.y + plot.h / 2 - (v / 1.0) * (plot.h / 2); }
+
+    // True signal (smooth sine composite)
+    function signal(t) {
+      var x = t / nPoints;
+      return 0.35 * Math.sin(x * Math.PI * 4)
+        + 0.2 * Math.sin(x * Math.PI * 7 + 1.2)
+        + 0.1 * Math.cos(x * Math.PI * 2);
+    }
+
+    // Raw noise (signal + heavy noise, fading to clean)
+    ctx.beginPath();
+    for (var i = 0; i <= nPoints; i++) {
+      var t = i;
+      var noiseFade = Math.max(0, 1 - (i / nPoints) * 1.3);
+      var noise = normalRandom(rng) * 0.4 * noiseFade;
+      var y = signal(t) + noise;
+      y = Math.max(-1, Math.min(1, y));
+      if (i === 0) ctx.moveTo(mapX(i), mapY(y));
+      else ctx.lineTo(mapX(i), mapY(y));
+    }
+    ctx.strokeStyle = 'rgba(43, 94, 167, 0.15)';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+
+    // Second noise layer
+    ctx.beginPath();
+    for (var j = 0; j <= nPoints; j++) {
+      var noiseFade2 = Math.max(0, 1 - (j / nPoints) * 1.3);
+      var noise2 = normalRandom(rng) * 0.5 * noiseFade2;
+      var y2 = signal(j) + noise2;
+      y2 = Math.max(-1, Math.min(1, y2));
+      if (j === 0) ctx.moveTo(mapX(j), mapY(y2));
+      else ctx.lineTo(mapX(j), mapY(y2));
+    }
+    ctx.strokeStyle = 'rgba(43, 94, 167, 0.08)';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+
+    // Third noise layer
+    ctx.beginPath();
+    for (var k = 0; k <= nPoints; k++) {
+      var noiseFade3 = Math.max(0, 1 - (k / nPoints) * 1.3);
+      var noise3 = normalRandom(rng) * 0.6 * noiseFade3;
+      var y3 = signal(k) + noise3;
+      y3 = Math.max(-1, Math.min(1, y3));
+      if (k === 0) ctx.moveTo(mapX(k), mapY(y3));
+      else ctx.lineTo(mapX(k), mapY(y3));
+    }
+    ctx.strokeStyle = 'rgba(43, 94, 167, 0.05)';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+
+    // Clean signal (emerges from the noise)
+    ctx.beginPath();
+    for (var s = 0; s <= nPoints; s++) {
+      var alpha = Math.min(1, (s / nPoints) * 1.5);
+      if (s === 0) ctx.moveTo(mapX(s), mapY(signal(s)));
+      else ctx.lineTo(mapX(s), mapY(signal(s)));
+    }
+    ctx.strokeStyle = COLORS.primary;
+    ctx.lineWidth = 1.8;
+    ctx.stroke();
+
+    // Gradient overlay to show emergence
+    var grad = ctx.createLinearGradient(plot.x, 0, plot.x + plot.w, 0);
+    grad.addColorStop(0, 'rgba(250, 250, 250, 0.85)');
+    grad.addColorStop(0.35, 'rgba(250, 250, 250, 0.3)');
+    grad.addColorStop(0.6, 'rgba(250, 250, 250, 0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(plot.x + 1, plot.y + 1, plot.w - 2, plot.h - 2);
+
+    // Annotations
+    ctx.font = '8px "JetBrains Mono", monospace';
+    ctx.fillStyle = COLORS.tertiary;
+    ctx.textAlign = 'left';
+    ctx.fillText('NOISE', plot.x + 10, plot.y + 16);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = COLORS.primary;
+    ctx.fillText('SIGNAL', plot.x + plot.w - 10, plot.y + 16);
+  }
+
+
+  /* ==========================================
+     12. CONVERGENCE (Philosophy)
+     ========================================== */
+  function drawConvergence(canvasId) {
+    var canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    var w = canvas.parentElement.offsetWidth;
+    var h = 340;
+    var ctx = setupCanvas(canvas, w, h);
+    var margin = { top: 35, right: 25, bottom: 45, left: 55 };
+
+    var plot = drawPlotFrame(ctx, {
+      width: w, height: h, margin: margin,
+      title: 'ITERATIVE CONVERGENCE  —  OPTIMIZATION TRAJECTORY',
+      xTitle: 'ITERATION',
+      yTitle: 'OBJECTIVE',
+      xLabels: ['0', '100', '200', '300', '400', '500'],
+      yLabels: ['', '', 'OPTIMAL', '', ''],
+      gridX: 5, gridY: 4
+    });
+
+    var nPaths = 12;
+    var nSteps = 500;
+    var rng = seededRandom(999);
+
+    function mapX(i) { return plot.x + (i / nSteps) * plot.w; }
+    function mapY(v) { return plot.y + plot.h / 2 + v * (plot.h * 0.4); }
+
+    var colors = [
+      COLORS.accent1, COLORS.accent2, COLORS.accent3,
+      COLORS.accent4, COLORS.accent5, COLORS.accent6,
+      COLORS.accent1, COLORS.accent2, COLORS.accent3,
+      COLORS.accent4, COLORS.accent5, COLORS.accent6
+    ];
+
+    // Draw convergence paths
+    for (var p = 0; p < nPaths; p++) {
+      var startVal = (rng() - 0.5) * 2;
+      ctx.beginPath();
+
+      for (var t = 0; t <= nSteps; t++) {
+        var decay = Math.exp(-t / 80);
+        var noise = normalRandom(rng) * 0.08 * decay;
+        var val = startVal * decay + noise;
+        if (t === 0) ctx.moveTo(mapX(t), mapY(val));
+        else ctx.lineTo(mapX(t), mapY(val));
+      }
+
+      ctx.strokeStyle = colors[p];
+      ctx.globalAlpha = 0.35;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+
+    // Optimal line (dashed)
+    ctx.beginPath();
+    ctx.setLineDash([6, 4]);
+    ctx.moveTo(plot.x, plot.y + plot.h / 2);
+    ctx.lineTo(plot.x + plot.w, plot.y + plot.h / 2);
+    ctx.strokeStyle = COLORS.primary;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.5;
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+
+    // Convergence zone shading
+    var zoneH = plot.h * 0.06;
+    ctx.fillStyle = 'rgba(76, 140, 43, 0.08)';
+    ctx.fillRect(plot.x + plot.w * 0.6, plot.y + plot.h / 2 - zoneH, plot.w * 0.4, zoneH * 2);
+
+    ctx.font = '7px "JetBrains Mono", monospace';
+    ctx.fillStyle = COLORS.accent3;
+    ctx.textAlign = 'right';
+    ctx.fillText('CONVERGENCE ZONE', plot.x + plot.w - 8, plot.y + plot.h / 2 - zoneH - 4);
+
+    // Scatter of initial conditions
+    ctx.font = '7px "JetBrains Mono", monospace';
+    ctx.fillStyle = COLORS.tertiary;
+    ctx.textAlign = 'left';
+    ctx.fillText('DIVERSE INITIAL CONDITIONS', plot.x + 8, plot.y + plot.h - 8);
+  }
+
+
+  /* ==========================================
+     13. DISTRIBUTION SHARPENING (Philosophy)
+     ========================================== */
+  function drawDistributionSharpening(canvasId) {
+    var canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    var w = canvas.parentElement.offsetWidth;
+    var h = 340;
+    var ctx = setupCanvas(canvas, w, h);
+    var margin = { top: 35, right: 25, bottom: 45, left: 50 };
+
+    var plot = drawPlotFrame(ctx, {
+      width: w, height: h, margin: margin,
+      title: 'PRECISION  —  BAYESIAN POSTERIOR UPDATE',
+      xTitle: 'PARAMETER SPACE',
+      yTitle: 'DENSITY',
+      xLabels: ['', '', '', '\u03B8*', '', '', ''],
+      yLabels: [],
+      gridX: 6, gridY: 0
+    });
+
+    function mapX(v) { return plot.x + ((v + 4) / 8) * plot.w; }
+    function mapY(v) { return plot.y + plot.h - (v / 1.2) * plot.h; }
+    function normalPDF(x, mu, sig) {
+      return Math.exp(-0.5 * Math.pow((x - mu) / sig, 2)) / (sig * Math.sqrt(2 * Math.PI));
+    }
+
+    var distributions = [
+      { sigma: 2.0, label: 'PRIOR', color: COLORS.faint, dash: [6, 4], lw: 1 },
+      { sigma: 1.2, label: 'N = 50', color: COLORS.accent6, dash: [], lw: 1 },
+      { sigma: 0.7, label: 'N = 500', color: COLORS.accent1, dash: [], lw: 1.2 },
+      { sigma: 0.35, label: 'N = 5,000', color: COLORS.accent5, dash: [], lw: 1.5 },
+      { sigma: 0.15, label: 'N = 50,000', color: COLORS.primary, dash: [], lw: 2 }
+    ];
+
+    // Fill under each distribution (lightest first)
+    distributions.forEach(function (dist) {
+      ctx.beginPath();
+      ctx.moveTo(mapX(-4), mapY(0));
+      for (var x = -4; x <= 4; x += 0.05) {
+        var y = normalPDF(x, 0, dist.sigma);
+        ctx.lineTo(mapX(x), mapY(y));
+      }
+      ctx.lineTo(mapX(4), mapY(0));
+      ctx.closePath();
+      ctx.fillStyle = dist.color + '08';
+      ctx.fill();
+    });
+
+    // Draw lines
+    distributions.forEach(function (dist) {
+      ctx.beginPath();
+      ctx.setLineDash(dist.dash);
+      for (var x = -4; x <= 4; x += 0.05) {
+        var y = normalPDF(x, 0, dist.sigma);
+        if (y < 0.001) continue;
+        if (x === -4 || (x > -4 && normalPDF(x - 0.05, 0, dist.sigma) < 0.001)) {
+          ctx.moveTo(mapX(x), mapY(y));
+        } else {
+          ctx.lineTo(mapX(x), mapY(y));
+        }
+      }
+      ctx.strokeStyle = dist.color;
+      ctx.lineWidth = dist.lw;
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    // True value line
+    ctx.beginPath();
+    ctx.setLineDash([3, 3]);
+    ctx.moveTo(mapX(0), mapY(0));
+    ctx.lineTo(mapX(0), plot.y + 5);
+    ctx.strokeStyle = COLORS.accent2;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.font = '7px "JetBrains Mono", monospace';
+    ctx.fillStyle = COLORS.accent2;
+    ctx.textAlign = 'center';
+    ctx.fillText('TRUE VALUE', mapX(0), plot.y + plot.h + 28);
+
+    // Legend
+    var lx = plot.x + plot.w - 110;
+    var ly = plot.y + 10;
+    distributions.forEach(function (dist, i) {
+      var lyy = ly + i * 13;
+      ctx.setLineDash(dist.dash);
+      ctx.strokeStyle = dist.color;
+      ctx.lineWidth = dist.lw;
+      ctx.beginPath();
+      ctx.moveTo(lx, lyy);
+      ctx.lineTo(lx + 16, lyy);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.font = '7px "JetBrains Mono", monospace';
+      ctx.fillStyle = COLORS.tertiary;
+      ctx.textAlign = 'left';
+      ctx.fillText(dist.label, lx + 22, lyy + 3);
+    });
+
+    // Arrow showing increasing precision
+    ctx.beginPath();
+    ctx.moveTo(lx + 80, ly + 8);
+    ctx.lineTo(lx + 80, ly + 55);
+    ctx.lineTo(lx + 76, ly + 49);
+    ctx.moveTo(lx + 80, ly + 55);
+    ctx.lineTo(lx + 84, ly + 49);
+    ctx.strokeStyle = COLORS.tertiary;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+    ctx.font = '6px "JetBrains Mono", monospace';
+    ctx.fillStyle = COLORS.tertiary;
+    ctx.textAlign = 'center';
+    ctx.save();
+    ctx.translate(lx + 92, ly + 32);
+    ctx.rotate(Math.PI / 2);
+    ctx.fillText('PRECISION', 0, 0);
+    ctx.restore();
+  }
+
+
+  /* ==========================================
      INIT — Attach to scroll reveals
      ========================================== */
   var drawn = {};
@@ -1180,6 +1499,9 @@
     initVisualization('viz-riskparity', drawRiskParity);
     initVisualization('viz-signaldecay', drawSignalDecay);
     initVisualization('viz-sharpe', drawSharpeComparison);
+    initVisualization('viz-signal-noise', drawSignalNoise);
+    initVisualization('viz-convergence', drawConvergence);
+    initVisualization('viz-bayesian', drawDistributionSharpening);
   });
 
 })();

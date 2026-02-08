@@ -73,6 +73,25 @@
       </div>
     </section>
 
+    <!-- Signal vs Noise -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="reveal">
+          <span class="section-label">Signal</span>
+          <div class="divider"></div>
+          <h2>Extracting structure from chaos</h2>
+          <p style="margin-top: 2vh;">
+            Markets are noisy systems. Our work begins where most analysis ends —
+            isolating the faint, persistent signals that carry genuine information
+            from the noise that surrounds them.
+          </p>
+        </div>
+        <div class="viz-container reveal" style="margin-top: 4vh;">
+          <canvas id="viz-signal-noise"></canvas>
+        </div>
+      </div>
+    </section>
+
     <!-- Principles -->
     <section class="section section--compact">
       <div class="section-inner">
@@ -92,6 +111,31 @@
           <div class="content-block">
             <h3>Continuous Validation</h3>
             <p>Models are not static artifacts. They are living systems subject to continuous scrutiny and adaptation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Convergence + Bayesian -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="reveal">
+          <span class="section-label">Method</span>
+          <div class="divider"></div>
+          <h2>Convergence through iteration</h2>
+          <p style="margin-top: 2vh;">
+            Our optimization processes do not seek a single answer.
+            They seek the region of parameter space where diverse
+            initial conditions converge — the zone where conviction
+            becomes justified.
+          </p>
+        </div>
+        <div class="viz-row" style="margin-top: 4vh;">
+          <div class="viz-container reveal">
+            <canvas id="viz-convergence"></canvas>
+          </div>
+          <div class="viz-container reveal" style="transition-delay: 0.15s;">
+            <canvas id="viz-bayesian"></canvas>
           </div>
         </div>
       </div>
@@ -128,5 +172,6 @@
   </div>
 
   <script src="/js/core.js"></script>
+  <script src="/js/visualizations.js"></script>
 </body>
 </html>
