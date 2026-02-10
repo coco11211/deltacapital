@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mean Reversion Strategies: Profiting from Extremes</title>
+  <meta name="description" content="How mean reversion works and building profitable mean reversion strategies in quantitative investing.">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="canonical" href="https://deltacapitaltrading.com/blog/mean-reversion-strategies.html">
+  <meta property="og:title" content="Mean Reversion Strategies — Delta Capital">
+  <meta property="og:description" content="How mean reversion works and building profitable mean reversion strategies.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Delta Capital">
+  <meta property="og:url" content="https://deltacapitaltrading.com/blog/mean-reversion-strategies.html">
+  <meta property="og:image" content="https://deltacapitaltrading.com/img/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-02-05">
+  <meta property="article:author" content="Delta Capital">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mean Reversion Strategies — Delta Capital">
+  <meta name="twitter:description" content="How mean reversion works and building profitable mean reversion strategies.">
+  <meta name="twitter:image" content="https://deltacapitaltrading.com/img/og-default.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Mean Reversion Strategies: Profiting from Extremes", "description": "How mean reversion works and building profitable mean reversion strategies in quantitative investing.", "image": "https://deltacapitaltrading.com/img/og-default.png", "datePublished": "2026-02-05", "dateModified": "2026-02-05", "author": {"@type": "Organization", "name": "Delta Capital", "url": "https://deltacapitaltrading.com"}, "publisher": {"@type": "Organization", "name": "Delta Capital", "logo": {"@type": "ImageObject", "url": "https://deltacapitaltrading.com/img/logo.png"}}}
+  </script>
+  <style>
+    .article-container { max-width: 800px; margin: 0 auto; }
+    .article-meta { color: #999; font-size: 0.85rem; margin-bottom: 30px; font-family: 'JetBrains Mono', monospace; }
+    article h2 { font-size: 1.8rem; margin-top: 40px; margin-bottom: 20px; }
+    article p { color: #555; line-height: 1.8; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="page-loader"><div class="delta-mark">&Delta;</div></div>
+  <canvas id="ambient-canvas"></canvas>
+  <div class="scroll-progress"></div>
+  <div class="nav-trigger" aria-label="Open navigation"><span></span><span></span></div>
+  <div class="cmd-palette-overlay"></div>
+  <div class="cmd-palette">
+    <input type="text" placeholder="Navigate..." autocomplete="off" spellcheck="false">
+    <ul class="cmd-palette-results"></ul>
+  </div>
+  <div class="key-hint"><kbd>Ctrl</kbd> + <kbd>K</kbd></div>
+  <div class="page-container">
+    <section class="section section--compact">
+      <div class="section-inner article-container">
+        <div class="reveal">
+          <p style="margin-bottom: 30px;"><a href="/blog.html" style="color: #111;">← Back to Blog</a></p>
+          <h1>Mean Reversion Strategies: Profiting from Extremes</h1>
+          <div class="article-meta reveal" style="transition-delay: 0.1s;">
+            <span>Feb 5, 2026</span> <span>•</span> <span>8 min read</span> <span>•</span> <span>Delta Capital</span>
+          </div>
+          <article class="reveal" style="transition-delay: 0.2s;">
+            <p>Mean reversion is the principle that prices extreme away from their average tend to move back. A stock trading at all-time highs relative to fundamentals is a reversion candidate. Mean reversion strategies identify these extremes and profit from normalization.</p>
+
+            <h2>The Theory Behind Mean Reversion</h2>
+            <p>Prices deviate from intrinsic value through supply/demand imbalances. When stocks become too expensive, selling accelerates. When prices fall too far, value buyers emerge. Prices oscillate around their mean. This oscillation is quantifiable and tradeable.</p>
+            <p>Reversion happens on multiple timescales: intraday bounces, weekly corrections, seasonal patterns, multi-year normalizations. Each requires different signal definitions and holding periods. Shorter-term reversions offer more frequent trades but smaller expected returns per trade.</p>
+
+            <h2>Identifying Mean Reversion Opportunities</h2>
+            <p>Statistical deviation from moving averages is one signal. When prices move 2 standard deviations from their 50-day average, reversion probability increases. The farther the deviation, the stronger the reversion signal. But deviation magnitude alone isn't sufficient.</p>
+            <p>Velocity matters. Fast moves provide stronger signals than slow gradual moves. A stock that drops 20% in one day is a stronger reversion candidate than one dropping 20% over six months. Momentum and mean reversion often work together: large momentum reversions offer the best opportunities.</p>
+
+            <h2>Execution and Position Management</h2>
+            <p>Mean reversion trades often require rapid execution. The first counter-move signals position entry. Holding periods are measured in days to weeks. Exit rules matter as much as entry rules. Exit when the position reverts to target levels or when time-based stops are hit.</p>
+            <p>Position sizing requires care. Reverting positions can move against you before reversing. Adequate stops and position sizing prevent catastrophic losses. Position size inversely proportional to distance from mean ensures proper risk management.</p>
+
+            <h2>Regime Dependence and Limitations</h2>
+            <p>Mean reversion fails in strong trending markets. A stock making new highs doesn't revert; it trends. Regimes with persistent momentum overwhelm mean reversion signals. Effective strategies detect regime changes and adjust position sizes accordingly.</p>
+            <p>Structural changes create false signals. A company experiencing fundamental deterioration doesn't revert to previous valuations. Mean reversion assumes price extremes are temporary. Always verify that fundamentals support reversion expectations.</p>
+
+            <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; color: #999; font-size: 0.9rem;">Educational content only. Not investment advice.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <nav class="footer-nav">
+        <a href="/">Philosophy</a> <a href="/research.html">Research</a> <a href="/risk.html">Risk</a> <a href="/architecture.html">Architecture</a>
+        <a href="/insights.html">Insights</a> <a href="/principles.html">Principles</a> <a href="/screener.html">Screener</a>
+        <a href="/blog.html" class="active">Blog</a> <a href="/glossary.html">Glossary</a> <a href="/brandkit.html">Brand Kit</a>
+        <a href="/disclosures.html">Disclosures</a> <a href="/faq.html">Questions</a> <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="footer-bottom"><span>&Delta; Capital &copy; 2026</span><span>All rights reserved</span></div>
+    </footer>
+  </div>
+  <script src="/js/core.js"></script>
+</body>
+</html>

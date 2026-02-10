@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Understanding the Sharpe Ratio: Risk-Adjusted Returns</title>
+  <meta name="description" content="Complete breakdown of the Sharpe ratio metric and how to evaluate investment performance on a risk-adjusted basis.">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="canonical" href="https://deltacapitaltrading.com/blog/sharpe-ratio-explained.html">
+  <meta property="og:title" content="Sharpe Ratio Explained — Delta Capital">
+  <meta property="og:description" content="Complete breakdown of the Sharpe ratio and evaluating risk-adjusted investment performance.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Delta Capital">
+  <meta property="og:url" content="https://deltacapitaltrading.com/blog/sharpe-ratio-explained.html">
+  <meta property="og:image" content="https://deltacapitaltrading.com/img/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-02-06">
+  <meta property="article:author" content="Delta Capital">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sharpe Ratio Explained — Delta Capital">
+  <meta name="twitter:description" content="Complete breakdown of the Sharpe ratio and evaluating risk-adjusted investment performance.">
+  <meta name="twitter:image" content="https://deltacapitaltrading.com/img/og-default.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Understanding the Sharpe Ratio: Risk-Adjusted Returns",
+  "description": "Complete breakdown of the Sharpe ratio metric and how to evaluate investment performance on a risk-adjusted basis.",
+  "image": "https://deltacapitaltrading.com/img/og-default.png",
+  "datePublished": "2026-02-06",
+  "dateModified": "2026-02-06",
+  "author": {"@type": "Organization", "name": "Delta Capital", "url": "https://deltacapitaltrading.com"},
+  "publisher": {"@type": "Organization", "name": "Delta Capital", "logo": {"@type": "ImageObject", "url": "https://deltacapitaltrading.com/img/logo.png"}}
+}
+  </script>
+  <style>
+    .article-container { max-width: 800px; margin: 0 auto; }
+    .article-meta { color: #999; font-size: 0.85rem; margin-bottom: 30px; font-family: 'JetBrains Mono', monospace; }
+    article h2 { font-size: 1.8rem; margin-top: 40px; margin-bottom: 20px; }
+    article p { color: #555; line-height: 1.8; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="page-loader"><div class="delta-mark">&Delta;</div></div>
+  <canvas id="ambient-canvas"></canvas>
+  <div class="scroll-progress"></div>
+  <div class="nav-trigger" aria-label="Open navigation"><span></span><span></span></div>
+  <div class="cmd-palette-overlay"></div>
+  <div class="cmd-palette">
+    <input type="text" placeholder="Navigate..." autocomplete="off" spellcheck="false">
+    <ul class="cmd-palette-results"></ul>
+  </div>
+  <div class="key-hint"><kbd>Ctrl</kbd> + <kbd>K</kbd></div>
+  <div class="page-container">
+    <section class="section section--compact">
+      <div class="section-inner article-container">
+        <div class="reveal">
+          <p style="margin-bottom: 30px;"><a href="/blog.html" style="color: #111;">← Back to Blog</a></p>
+          <h1>Understanding the Sharpe Ratio: Risk-Adjusted Returns</h1>
+          <div class="article-meta reveal" style="transition-delay: 0.1s;">
+            <span>Feb 6, 2026</span> <span>•</span> <span>6 min read</span> <span>•</span> <span>Delta Capital</span>
+          </div>
+          <article class="reveal" style="transition-delay: 0.2s;">
+            <p>The Sharpe Ratio is the most widely used metric for evaluating investment performance. It answers a fundamental question: how much return do you get per unit of risk? Two funds with different returns and risks can be compared fairly only on a risk-adjusted basis.</p>
+
+            <h2>The Formula and What It Means</h2>
+            <p>The Sharpe Ratio formula is: (Return - Risk-Free Rate) / Standard Deviation. The numerator is excess return above the risk-free rate. The denominator is volatility (risk). A higher Sharpe Ratio means better returns relative to risk taken.</p>
+            <p>A Sharpe Ratio of 1.0 means earning 1% excess return per 1% of volatility. A Sharpe Ratio of 2.0 is exceptional. Most active managers achieve Sharpe Ratios below 0.5. The S&P 500 historically achieves around 0.4-0.6.</p>
+
+            <h2>Why Risk-Adjusted Matters</h2>
+            <p>A strategy returning 20% with 40% volatility is riskier than one returning 10% with 10% volatility. Comparing raw returns is meaningless. The Sharpe Ratio puts them on equal footing: the first has 0.5 Sharpe, the second has 1.0 Sharpe (assuming 0% risk-free rate).</p>
+            <p>This is critical for investors. You want the best return per unit of risk accepted. The Sharpe Ratio quantifies exactly that trade-off, enabling rational comparison across any strategy.</p>
+
+            <h2>Limitations of the Sharpe Ratio</h2>
+            <p>The Sharpe Ratio assumes returns are normally distributed. In reality, financial returns have fat tails. A strategy with occasional catastrophic losses might have the same volatility as a smooth-returning strategy, yet the Sharpe Ratio treats them identically.</p>
+            <p>The risk-free rate assumption matters. Using current 4% rates vs. historical 1% rates changes comparisons significantly. The denominator (volatility) also assumes volatility is the right risk measure, which isn't always true for non-normal distributions.</p>
+
+            <h2>Alternatives and Complements</h2>
+            <p>The Sortino Ratio fixes one Sharpe limitation by counting only downside volatility. Calmar Ratio uses maximum drawdown instead of volatility. Information Ratio compares to a benchmark. Each has merits depending on the question being asked.</p>
+            <p>Use the Sharpe Ratio as your primary tool, but supplement it with others. A high Sharpe Ratio with large tail risks is less attractive than a slightly lower Sharpe Ratio with controlled tail risk.</p>
+
+            <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; color: #999; font-size: 0.9rem;">Educational content only. Not investment advice.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <nav class="footer-nav">
+        <a href="/">Philosophy</a> <a href="/research.html">Research</a> <a href="/risk.html">Risk</a> <a href="/architecture.html">Architecture</a>
+        <a href="/insights.html">Insights</a> <a href="/principles.html">Principles</a> <a href="/screener.html">Screener</a>
+        <a href="/blog.html" class="active">Blog</a> <a href="/glossary.html">Glossary</a> <a href="/brandkit.html">Brand Kit</a>
+        <a href="/disclosures.html">Disclosures</a> <a href="/faq.html">Questions</a> <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="footer-bottom"><span>&Delta; Capital &copy; 2026</span><span>All rights reserved</span></div>
+    </footer>
+  </div>
+  <script src="/js/core.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Learning in Finance: Applications and Limitations</title>
+  <meta name="description" content="How AI and machine learning are transforming investment management, with focus on practical applications and real constraints.">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="canonical" href="https://deltacapitaltrading.com/blog/machine-learning-finance.html">
+  <meta property="og:title" content="Machine Learning in Finance — Delta Capital">
+  <meta property="og:description" content="How AI and machine learning transform investment management and systematic trading.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Delta Capital">
+  <meta property="og:url" content="https://deltacapitaltrading.com/blog/machine-learning-finance.html">
+  <meta property="og:image" content="https://deltacapitaltrading.com/img/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-02-05">
+  <meta property="article:author" content="Delta Capital">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Machine Learning in Finance — Delta Capital">
+  <meta name="twitter:description" content="How AI and machine learning transform investment management and systematic trading.">
+  <meta name="twitter:image" content="https://deltacapitaltrading.com/img/og-default.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Machine Learning in Finance: Applications and Limitations",
+  "description": "How AI and machine learning are transforming investment management, with focus on practical applications and real constraints.",
+  "image": "https://deltacapitaltrading.com/img/og-default.png",
+  "datePublished": "2026-02-05",
+  "dateModified": "2026-02-05",
+  "author": {"@type": "Organization", "name": "Delta Capital", "url": "https://deltacapitaltrading.com"},
+  "publisher": {"@type": "Organization", "name": "Delta Capital", "logo": {"@type": "ImageObject", "url": "https://deltacapitaltrading.com/img/logo.png"}}
+}
+  </script>
+  <style>
+    .article-container { max-width: 800px; margin: 0 auto; }
+    .article-meta { color: #999; font-size: 0.85rem; margin-bottom: 30px; font-family: 'JetBrains Mono', monospace; }
+    article h2 { font-size: 1.8rem; margin-top: 40px; margin-bottom: 20px; }
+    article p { color: #555; line-height: 1.8; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="page-loader"><div class="delta-mark">&Delta;</div></div>
+  <canvas id="ambient-canvas"></canvas>
+  <div class="scroll-progress"></div>
+  <div class="nav-trigger" aria-label="Open navigation"><span></span><span></span></div>
+  <div class="cmd-palette-overlay"></div>
+  <div class="cmd-palette">
+    <input type="text" placeholder="Navigate..." autocomplete="off" spellcheck="false">
+    <ul class="cmd-palette-results"></ul>
+  </div>
+  <div class="key-hint"><kbd>Ctrl</kbd> + <kbd>K</kbd></div>
+  <div class="page-container">
+    <section class="section section--compact">
+      <div class="section-inner article-container">
+        <div class="reveal">
+          <p style="margin-bottom: 30px;"><a href="/blog.html" style="color: #111;">← Back to Blog</a></p>
+          <h1>Machine Learning in Finance: Applications and Limitations</h1>
+          <div class="article-meta reveal" style="transition-delay: 0.1s;">
+            <span>Feb 5, 2026</span> <span>•</span> <span>10 min read</span> <span>•</span> <span>Delta Capital</span>
+          </div>
+          <article class="reveal" style="transition-delay: 0.2s;">
+            <p>Machine learning has transformed quantitative investing. Neural networks now predict market movements, clustering algorithms identify regime changes, and ensemble methods combine signals. Yet the hype exceeds reality. Many ML applications fail in production trading. Understanding both capabilities and limitations is essential.</p>
+
+            <h2>Where ML Excels in Finance</h2>
+            <p>Machine learning handles high-dimensional data better than traditional statistics. Pattern recognition in alternative data (satellite imagery, credit card transactions, web traffic) requires ML. Natural language processing of earnings calls or news reveals sentiment. These are areas where traditional methods struggle.</p>
+            <p>Classification problems suit ML well. Predicting bankruptcy, credit defaults, or regime changes are classification tasks where ML shines. Anomaly detection finds unusual patterns humans miss. These applications have clear business value when properly validated.</p>
+
+            <h2>Where ML Fails</h2>
+            <p>Time series forecasting with financial data is notoriously hard. Markets are non-stationary; distributions shift constantly. A neural network trained on 2020-2021 data fails on 2022-2023 data. The regime it learned no longer applies. This regime instability is the core challenge.</p>
+            <p>Overfitting in high dimensions is severe. With thousands of features and millions of parameters, fitting noise is trivial. A network perfectly predicting historical data often fails on new data. Practitioners often mistake overfitting for genuine signal.</p>
+
+            <h2>The Data Problem</h2>
+            <p>Financial data is small by ML standards. Thousands of daily observations vs billions available in other domains. Sparse events (market crashes, earnings surprises) make learning difficult. Signal-to-noise ratios are lower in finance than most ML domains.</p>
+            <p>Data quality issues compound the problem. Survivorship bias, delisting, stock splits, corporate actions—all require careful handling. Dirty data produces dirty models. The data engineering work often exceeds the modeling work by 10x.</p>
+
+            <h2>Production Challenges</h2>
+            <p>A strategy that works in backtest must survive transactions costs, slippage, and market impact. Model predictions must be actionable. A 51% win rate in backtesting becomes a 49% win rate in live trading after costs. This is where many ML strategies fail.</p>
+            <p>Model monitoring is essential. Retraining schedules, performance tracking, drift detection—all require discipline. A model in production requires 100x more engineering than a research model. Most organizations underestimate this cost.</p>
+
+            <h2>The Practical Approach</h2>
+            <p>Successful ML in finance combines traditional domain expertise with modern methods. Don't replace financial domain knowledge with ML. Enhance it. Use ML to optimize within a framework of financial understanding. Start with simple models, measure their performance rigorously, and scale only what works.</p>
+
+            <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; color: #999; font-size: 0.9rem;">Educational content only. Not investment advice.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <nav class="footer-nav">
+        <a href="/">Philosophy</a> <a href="/research.html">Research</a> <a href="/risk.html">Risk</a> <a href="/architecture.html">Architecture</a>
+        <a href="/insights.html">Insights</a> <a href="/principles.html">Principles</a> <a href="/screener.html">Screener</a>
+        <a href="/blog.html" class="active">Blog</a> <a href="/glossary.html">Glossary</a> <a href="/brandkit.html">Brand Kit</a>
+        <a href="/disclosures.html">Disclosures</a> <a href="/faq.html">Questions</a> <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="footer-bottom"><span>&Delta; Capital &copy; 2026</span><span>All rights reserved</span></div>
+    </footer>
+  </div>
+  <script src="/js/core.js"></script>
+</body>
+</html>
