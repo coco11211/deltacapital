@@ -1,0 +1,26 @@
+# Delta Capital - Robots.txt
+# Last Updated: February 2026
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Sitemap reference
+Sitemap: https://deltacapitaltrading.com/sitemap.xml
+
+# Specific rules for common bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
