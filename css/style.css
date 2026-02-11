@@ -1562,6 +1562,27 @@ body.risk-page .content-block p { line-height: 1.9; }
   opacity: 0.85;
 }
 
+.cookie-learn-more {
+  background: transparent;
+  color: var(--bg);
+  border: 1px solid var(--bg);
+  padding: 0.7rem 1.5rem;
+  font-family: var(--serif);
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.cookie-learn-more:hover {
+  background: var(--bg);
+  color: var(--fg);
+}
+
 @media (max-width: 768px) {
   .cookie-notice {
     flex-direction: column;
@@ -1571,10 +1592,14 @@ body.risk-page .content-block p { line-height: 1.9; }
 
   .cookie-notice-actions {
     width: 100%;
+    flex-direction: column;
   }
 
-  .cookie-accept {
+  .cookie-accept,
+  .cookie-learn-more {
     flex: 1;
+    width: 100%;
+    text-align: center;
   }
 }
 

@@ -34,9 +34,10 @@
 
     notice.innerHTML = `
       <div class="cookie-notice-content">
-        We use essential cookies to ensure our website functions properly. By continuing to use this site, you agree to our use of cookies. <a href="/disclosures.html#cookie-policy">Learn more about cookies</a>.
+        We use essential cookies to ensure our website functions properly. By continuing to use this site, you agree to our use of cookies.
       </div>
       <div class="cookie-notice-actions">
+        <a href="/cookies.html" class="cookie-learn-more" aria-label="View cookie policy">Learn More</a>
         <button class="cookie-accept" aria-label="Accept cookies">Accept</button>
       </div>
     `;
